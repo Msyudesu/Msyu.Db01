@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[CharacterStats] (
+    [ID]                    INT      IDENTITY (1, 1) NOT NULL,
+    [CharacterID]           INT      NOT NULL,
+    [Armor]                 SMALLINT NOT NULL,
+    [Constitution]          SMALLINT NOT NULL,
+    [Strength]              SMALLINT NOT NULL,
+    [Agility]               SMALLINT NOT NULL,
+    [Intelligence]          SMALLINT NOT NULL,
+    [Dexterity]             SMALLINT NOT NULL,
+    [Max_Health]            INT      NOT NULL,
+    [Max_Stamina]           INT      NOT NULL,
+    [Max_Mana]              INT      NOT NULL,
+    [Sturdiness]            INT      NOT NULL,
+    [Fire_Resistance]       INT      NOT NULL,
+    [Water_Resistance]      INT      NOT NULL,
+    [Air_Resistance]        INT      NOT NULL,
+    [Earth_Resistance]      INT      NOT NULL,
+    [Electrical_Resistance] INT      NOT NULL,
+    [Dark_Resistance]       INT      NOT NULL,
+    [Light_Resistance]      INT      NOT NULL,
+    [Void_Resistance]       INT      NOT NULL,
+    [Biological_Resistance] INT      NOT NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    FOREIGN KEY ([CharacterID]) REFERENCES [dbo].[Characters] ([ID])
+);
+
