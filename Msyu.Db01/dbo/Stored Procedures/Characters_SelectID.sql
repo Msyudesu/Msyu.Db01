@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE dbo.Characters_SelectID
+﻿CREATE PROCEDURE [dbo].[Characters_SelectID]
     @CharacterID int = 0 
 AS
 BEGIN
@@ -14,7 +14,7 @@ BEGIN
 		,f.FactionName as 'Faction'
 		,r.RaceName as 'Race'
 		,chapp.CharHeight as 'Height',chapp.CharWeight as 'Weight',chapp.HairColor ,chapp.HairStyle, chapp.EyeType, chapp.EyeColor, chapp.CommonClothing, chapp.FormalClothing, chapp.UniqueFeatures
-		,stat.Strength, stat.Constition, stat.Dexterity, stat.Agility, stat.Armor, stat.Intelligence, stat.Max_Health, stat.Max_Mana, stat.Max_Stamina
+		,stat.Strength, stat.Constitution, stat.Dexterity, stat.Agility, stat.Armor, stat.Intelligence, stat.Max_Health, stat.Max_Mana, stat.Max_Stamina
 		,stat.Air_Resistance, stat.Biological_Resistance, stat.Dark_Resistance, stat.Earth_Resistance, stat.Electrical_Resistance, stat.Fire_Resistance, stat.Light_Resistance, stat.Void_Resistance, stat.Water_Resistance
 	FROM dbo.Characters as ch
 		LEFT JOIN dbo.CharacterAppearance as chapp on chapp.CharacterID = ch.ID
