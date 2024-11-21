@@ -14,3 +14,8 @@
     FOREIGN KEY ([CharStatus]) REFERENCES [dbo].[Statuses] ([ID])
 );
 
+
+GO
+CREATE TRIGGER T_CharacterDetails_Update  ON dbo.CharacterDetails  AFTER UPDATE  AS  BEGIN       SET NOCOUNT ON;        UPDATE CharacterDetails    SET        LastModDate = GETDATE()        , LastModUser = SYSTEM_USER    FROM        dbo.CharacterDetails t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;
+GO
+CREATE TRIGGER T_CharacterDetails_Insert  ON dbo.CharacterDetails  AFTER INSERT  AS  BEGIN       SET NOCOUNT ON;        UPDATE CharacterDetails    SET        CreatedDate = GETDATE()        , CreatedUser = SYSTEM_USER    FROM        dbo.CharacterDetails t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;

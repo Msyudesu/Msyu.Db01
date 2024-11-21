@@ -18,3 +18,8 @@
     FOREIGN KEY ([RaceID]) REFERENCES [dbo].[Races] ([ID])
 );
 
+
+GO
+CREATE TRIGGER T_CharacterDemographics_Update  ON dbo.CharacterDemographics  AFTER UPDATE  AS  BEGIN       SET NOCOUNT ON;        UPDATE CharacterDemographics    SET        LastModDate = GETDATE()        , LastModUser = SYSTEM_USER    FROM        dbo.CharacterDemographics t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;
+GO
+CREATE TRIGGER T_CharacterDemographics_Insert  ON dbo.CharacterDemographics  AFTER INSERT  AS  BEGIN       SET NOCOUNT ON;        UPDATE CharacterDemographics    SET        CreatedDate = GETDATE()        , CreatedUser = SYSTEM_USER    FROM        dbo.CharacterDemographics t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;

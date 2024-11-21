@@ -11,4 +11,7 @@
 );
 
 
-
+GO
+CREATE TRIGGER T_Archetypes_Update  ON dbo.Archetypes  AFTER UPDATE  AS  BEGIN       SET NOCOUNT ON;        UPDATE Archetypes    SET        LastModDate = GETDATE()        , LastModUser = SYSTEM_USER    FROM        dbo.Archetypes t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;
+GO
+CREATE TRIGGER T_Archetypes_Insert  ON dbo.Archetypes  AFTER INSERT  AS  BEGIN       SET NOCOUNT ON;        UPDATE Archetypes    SET        CreatedDate = GETDATE()        , CreatedUser = SYSTEM_USER    FROM        dbo.Archetypes t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;

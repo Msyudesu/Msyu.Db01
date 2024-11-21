@@ -13,4 +13,7 @@
 );
 
 
-
+GO
+CREATE TRIGGER T_Locations_Update  ON dbo.Locations  AFTER UPDATE  AS  BEGIN       SET NOCOUNT ON;        UPDATE Locations    SET        LastModDate = GETDATE()        , LastModUser = SYSTEM_USER    FROM        dbo.Locations t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;
+GO
+CREATE TRIGGER T_Locations_Insert  ON dbo.Locations  AFTER INSERT  AS  BEGIN       SET NOCOUNT ON;        UPDATE Locations    SET        CreatedDate = GETDATE()        , CreatedUser = SYSTEM_USER    FROM        dbo.Locations t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;

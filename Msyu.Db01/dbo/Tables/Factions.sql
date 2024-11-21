@@ -13,4 +13,7 @@
 );
 
 
-
+GO
+CREATE TRIGGER T_Factions_Update  ON dbo.Factions  AFTER UPDATE  AS  BEGIN       SET NOCOUNT ON;        UPDATE Factions    SET        LastModDate = GETDATE()        , LastModUser = SYSTEM_USER    FROM        dbo.Factions t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;
+GO
+CREATE TRIGGER T_Factions_Insert  ON dbo.Factions  AFTER INSERT  AS  BEGIN       SET NOCOUNT ON;        UPDATE Factions    SET        CreatedDate = GETDATE()        , CreatedUser = SYSTEM_USER    FROM        dbo.Factions t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;

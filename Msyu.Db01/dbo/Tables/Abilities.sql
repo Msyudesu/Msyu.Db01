@@ -17,4 +17,7 @@
 );
 
 
-
+GO
+CREATE TRIGGER T_Abilities_Update  ON dbo.Abilities  AFTER UPDATE  AS  BEGIN       SET NOCOUNT ON;        UPDATE Abilities    SET        LastModDate = GETDATE()        , LastModUser = SYSTEM_USER    FROM        dbo.Abilities t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;
+GO
+CREATE TRIGGER T_Abilities_Insert  ON dbo.Abilities  AFTER INSERT  AS  BEGIN       SET NOCOUNT ON;        UPDATE Abilities    SET        CreatedDate = GETDATE()        , CreatedUser = SYSTEM_USER    FROM        dbo.Abilities t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;

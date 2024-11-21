@@ -13,4 +13,7 @@
 );
 
 
-
+GO
+CREATE TRIGGER T_CharacterAbilities_Update  ON dbo.CharacterAbilities  AFTER UPDATE  AS  BEGIN       SET NOCOUNT ON;        UPDATE CharacterAbilities    SET        LastModDate = GETDATE()        , LastModUser = SYSTEM_USER    FROM        dbo.CharacterAbilities t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;
+GO
+CREATE TRIGGER T_CharacterAbilities_Insert  ON dbo.CharacterAbilities  AFTER INSERT  AS  BEGIN       SET NOCOUNT ON;        UPDATE CharacterAbilities    SET        CreatedDate = GETDATE()        , CreatedUser = SYSTEM_USER    FROM        dbo.CharacterAbilities t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;

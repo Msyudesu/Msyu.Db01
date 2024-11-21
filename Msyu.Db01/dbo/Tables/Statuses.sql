@@ -10,3 +10,8 @@
     UNIQUE NONCLUSTERED ([CharacterStatus] ASC)
 );
 
+
+GO
+CREATE TRIGGER T_Statuses_Update  ON dbo.Statuses  AFTER UPDATE  AS  BEGIN       SET NOCOUNT ON;        UPDATE Statuses    SET        LastModDate = GETDATE()        , LastModUser = SYSTEM_USER    FROM        dbo.Statuses t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;
+GO
+CREATE TRIGGER T_Statuses_Insert  ON dbo.Statuses  AFTER INSERT  AS  BEGIN       SET NOCOUNT ON;        UPDATE Statuses    SET        CreatedDate = GETDATE()        , CreatedUser = SYSTEM_USER    FROM        dbo.Statuses t    INNER JOIN        INSERTED I ON t.ID = I.ID;END;
